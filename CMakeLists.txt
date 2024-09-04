@@ -1,32 +1,31 @@
-# Set minimum CMake version
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.10)
 
-# Set the project name and version
-project(Illumin8)
+# Project Name
+project(MyProject)
 
-# GoogleTest requires at least C++14
+# Set C++ Standard
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Add the source code
+add_executable(my_project src/main.cpp)
+
+# Use FetchContent to download Catch2
 include(FetchContent)
+
 FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG v2.13.7  # Specific Catch2 version
 )
 
-FetchContent_MakeAvailable(googletest)
+FetchContent_MakeAvailable(Catch2)
 
+# Add tests
+add_executable(test_my_project tests/test.cpp)
+
+# Link Catch2 to the test executable
+target_link_libraries(test_my_project Catch2::Catch2)
+
+# Enable CTest to run tests with `make test`
 enable_testing()
-
-# CMake generate an executable
-add_executable(Illumin8 src/test.cpp)
-
-target_link_libraries(
-    Illumin8
-    gtest_main
-)
-
-target_include_directories(Illumin8 PUBLIC ${gtest_SOURCE_DIR}/include)
-
-include(GoogleTest)
-gtest_discover_tests(Illumin8)
+add_test(NAME test_my_project COMMAND test_my_project)
