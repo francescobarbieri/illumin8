@@ -1,31 +1,27 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15...3.30)
+project(Illumin8 VERSION 1.0 LANGUAGES CXX)
 
-# Project Name
-project(MyProject)
-
-# Set C++ Standard
+# Set up directories and standards
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add the source code
-add_executable(my_project src/main.cpp)
+# Copy all header files to the include/Illumin8 folder
+if(COMMAND execute_process)
+    execute_process(
+        COMMAND ${CMAKE_SOURCE_DIR}/script.sh
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
+else()
+    message(WARNING "Could not copy headers file into /include folder. Ensure script exists and is executable.")
+endif()
 
-# Use FetchContent to download Catch2
-include(FetchContent)
+# Include directories
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
-FetchContent_Declare(
-  Catch2
-  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG v2.13.7  # Specific Catch2 version
-)
-
-FetchContent_MakeAvailable(Catch2)
-
-# Add tests
-add_executable(test_my_project tests/test.cpp)
-
-# Link Catch2 to the test executable
-target_link_libraries(test_my_project Catch2::Catch2)
-
-# Enable CTest to run tests with `make test`
+# Include Catch2 setup
+#include(${PROJECT_SOURCE_DIR}/cmake/Catch2.cmake)
 enable_testing()
-add_test(NAME test_my_project COMMAND test_my_project)
+add_subdirectory(tests)
+
+# Add executable
+add_executable(Illumin8 src/main.cpp)

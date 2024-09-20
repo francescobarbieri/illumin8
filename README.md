@@ -8,6 +8,29 @@
 
 ### Installation
 
+To install and set up the project, follow these steps:
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/your-repo.git
+    cd your-repo
+    ```
+
+2. **Install Catch2 (required for testing)**. If you're using macOS, you can install it via Homebrew:
+    ```bash
+    brew install catch2
+    ```
+
+3. **Build the project with CMake**: Ensure you have CMake installed. Then run the following commands:
+    ```bash
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ```
+
+4. **Run the executable from the build directory**.
+
 ### Features
 
 ### Gallery
