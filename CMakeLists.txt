@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.15...3.30)
 project(Illumin8 VERSION 1.0 LANGUAGES CXX)
 
 # Set up directories and standards
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_SYSTEM_NAME Darwin)
+set(CMAKE_OSX_ARCHITECTURES arm64)
 
 # Copy all header files to the include/Illumin8 folder
 if(COMMAND execute_process)
