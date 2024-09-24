@@ -9,6 +9,11 @@ class Tuple {
         float w() const { return w_; }
         void setW(float w) { w_ = w; }
 
+        float magnitude() const;
+        Tuple normalize() const;
+        float dot(Tuple tup) const;
+        Tuple cross(Tuple tup) const;
+
         bool isPoint() const;
         bool isVector() const;
 
@@ -18,6 +23,10 @@ class Tuple {
 
 bool operator==(const Tuple lhs, const Tuple rhs);
 Tuple operator+(const Tuple lhs, const Tuple rhs);
+Tuple operator-(const Tuple lhs, const Tuple rhs);
+Tuple operator-(const Tuple neg);
+Tuple operator*(const Tuple tup, float alpha);
+Tuple operator/(const Tuple tup, float alpha);
 
 Tuple Point(float x, float y, float z);
 Tuple Vector(float x, float y, float z);
