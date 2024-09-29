@@ -2,6 +2,8 @@ find_package(Catch2 3 PATHS /usr/local/opt/homebrew/Cellar/catch2/3.7.0)
 add_executable(RunTests tests_main.cpp
     core/test_tuple.cpp
     ../src/core/tuple.cpp
+    core/test_color.cpp
+    ../src/core/color.cpp
 )
 
 target_link_libraries(RunTests PRIVATE Catch2::Catch2WithMain)
