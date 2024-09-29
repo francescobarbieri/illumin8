@@ -9,3 +9,9 @@ class Color : public Tuple {
         float green() const { return this->y(); }
         float blue() const { return this->z(); }
 };
+
+Color operator* (const Color lhs, const Color rhs);
+Color operator* (const Color c, const float scalar);
+Color operator+ (const Color lhs, const Color rhs);
+Color operator- (const Color lhs, const Color rhs);
+
