@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SRC_DIRS="src/core src/scenes src/materials src/renderers src/objects"
+SRC_DIRS="src/core src/scenes src/materials src/renderers src/objects src/display"
 DEST_DIR="include/Illumin8"
 
 echo "Starting to copy headers..."

@@ -1,3 +1,6 @@
+#ifndef COLOR_H
+#define COLOR_H
+
 #include "tuple.h"
 
 class Color : public Tuple {
@@ -15,3 +18,4 @@ Color operator* (const Color c, const float scalar);
 Color operator+ (const Color lhs, const Color rhs);
 Color operator- (const Color lhs, const Color rhs);
 
+#endif

@@ -4,6 +4,8 @@ add_executable(RunTests tests_main.cpp
     ../src/core/tuple.cpp
     core/test_color.cpp
     ../src/core/color.cpp
+    display/test_canvas.cpp
+    ../src/display/canvas.cpp
 )
 
 target_link_libraries(RunTests PRIVATE Catch2::Catch2WithMain)
