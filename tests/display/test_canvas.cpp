@@ -20,5 +20,13 @@ TEST_CASE("Writing pixels to a canvas", "[canvas]") {
 
 TEST_CASE("Constructing the PPM header", "[canvas]") {
     auto c = Canvas(5, 3);
+    auto c1 = Color(1.5, 0, 0);
+    auto c2 = Color(0, 0.5, 0);
+    auto color = Color (0.3, 0 ,0);
+
+    c.write_pixel(0, 0, c1);
+    c.write_pixel(2, 1, c2);
+    c.write_pixel(3, 2, color);
+
     c.canvas_to_ppm();
 }

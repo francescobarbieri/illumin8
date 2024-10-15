@@ -5,7 +5,7 @@ Canvas::Canvas(int w, int h)
 {
     this->w_ = w;
     this->h_ = h;
-    this->pixels = std::vector<std::vector<Color>>(h, std::vector<Color>(w, Color(0, 0, 0)));
+    this->pixels = std::vector<std::vector<Color>>(w, std::vector<Color>(h, Color(0, 0, 0)));
 }
 
 void Canvas::write_pixel(int w, int h, Color c)
@@ -28,8 +28,8 @@ void Canvas::canvas_to_ppm()
 {
     std::ofstream file("image.ppm");
     file << "P3\n" << w_ << " " << h_ << "\n255\n";
-    for(const auto& row : pixels) {
-        for(const auto& pixel : row) {
+    for(const auto row : pixels) {
+        for(const auto pixel : row) {
             file << static_cast<int>(pixel.red() * 255) << " "
                  << static_cast<int>(pixel.green() * 255) << " "
                  << static_cast<int>(pixel.blue() * 255) << "\n";
