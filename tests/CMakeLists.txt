@@ -4,6 +4,8 @@ add_executable(RunTests tests_main.cpp
     ../src/core/tuple.cpp
     core/test_color.cpp
     ../src/core/color.cpp
+    core/test_matrix.cpp
+    ../src/core/matrix.cpp
     display/test_canvas.cpp
     ../src/display/canvas.cpp
 )
