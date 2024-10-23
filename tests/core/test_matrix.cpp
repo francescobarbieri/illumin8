@@ -81,9 +81,22 @@ TEST_CASE("Multiplying a matrix by the identity matrix", "[matrix]") {
   REQUIRE( A * IdentityMatrix(4) == A );
 }
 
-
 TEST_CASE("Multiplying the identity matrix by a tuple", "[matrix]") {
   Tuple T(1, 2, 3, 4);
 
   REQUIRE( IdentityMatrix(4) * T == T );
+}
+
+TEST_CASE("Transposing a matrix", "[matrix]") {
+  std::vector<float> vec = {0, 9, 3, 0, 9, 8, 0, 8, 1, 8, 5, 3, 0, 0, 5, 8};
+  std::vector<float> vecT = {0, 9, 1, 0, 9, 8, 8, 0, 3, 0, 5, 5, 0, 8, 3, 8};
+  Matrix A(4, 4, vec);
+  Matrix AT(4, 4, vecT);
+
+  REQUIRE( A.Transpose() == AT );
+}
+
+
+TEST_CASE("Transposing the identity matrix", "[matrix]") { 
+  REQUIRE( IdentityMatrix(4).Transpose() == IdentityMatrix(4) );
 }

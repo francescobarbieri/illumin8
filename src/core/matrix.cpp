@@ -27,6 +27,19 @@ Matrix::Matrix(int w, int h, std::vector<float> values)
   }
 }
 
+Matrix Matrix::Transpose() const
+{
+  Matrix result (this->h_, this->w_, std::vector<float>(this->h_ * this->w_));
+
+  for(int i = 0; i < this->h_; i++) {
+    for(int j = 0; j < this->w_; j++) {
+      result.values[j][i] = this->values[i][j];
+    }
+  }
+
+  return result;
+}
+
 float Matrix::operator()(int row, int col) const
 {
   return this->values[row][col];

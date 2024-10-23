@@ -8,6 +8,8 @@ class Matrix {
   public:
     Matrix(int w, int h, std::vector<float> values);
 
+    Matrix Transpose() const;
+
     float operator() (int row, int col) const;
     bool operator== (const Matrix& other) const;
     Matrix operator* (const Matrix& other) const;
