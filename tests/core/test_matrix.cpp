@@ -73,3 +73,17 @@ TEST_CASE("Multiplying matrix and tuple", "[matrix]") {
 
   REQUIRE( A * T == Tuple(18, 24, 33, 1) );
 }
+
+TEST_CASE("Multiplying a matrix by the identity matrix", "[matrix]") {
+  std::vector<float> vec = {0, 1, 2, 4, 1, 2, 4, 8, 2, 4, 8, 16, 4, 8, 16, 32};
+  Matrix A(4, 4, vec);
+
+  REQUIRE( A * IdentityMatrix(4) == A );
+}
+
+
+TEST_CASE("Multiplying the identity matrix by a tuple", "[matrix]") {
+  Tuple T(1, 2, 3, 4);
+
+  REQUIRE( IdentityMatrix(4) * T == T );
+}

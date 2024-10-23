@@ -1,6 +1,7 @@
 #include <iostream>
 #include "matrix.h"
 #include "math.h"
+#include <vector>
 
 Matrix::Matrix(int w, int h, std::vector<float> values)
 {
@@ -95,4 +96,15 @@ void Matrix::toConsole()
     }
     std::cout << std::endl;
   }
+}
+
+Matrix IdentityMatrix(int dim)
+{
+  std::vector<float> vec(dim * dim, 0);
+
+  for(int i = 0; i < dim; i++) {
+    vec[i * dim + i] = 1;
+  }
+
+  return Matrix(dim, dim, vec);
 }

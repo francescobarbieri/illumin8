@@ -20,4 +20,6 @@ class Matrix {
     std::vector<std::vector<float>> values;
 };
 
+Matrix IdentityMatrix(int dim);
+
 #endif
