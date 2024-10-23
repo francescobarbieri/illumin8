@@ -46,6 +46,47 @@ bool Matrix::operator==(const Matrix& other) const
   return true;
 }
 
+Matrix Matrix::operator*(const Matrix &other) const
+{
+  // Check if matrixes can be multiplicated
+  if (this->w_ != other.h_) {
+    throw std::invalid_argument("Matrix dimensions are not compatible for multiplication.");
+  }
+
+  Matrix result(this->w_, other.h_, std::vector<float>(this->h_ * other.w_, 0));
+
+  for (int i = 0; i < this->h_; i++) {
+    for (int j = 0; j < other.w_; j++) {
+      float sum = 0;
+      for (int k = 0; k < this->w_; k++) {
+        sum += this->values[i][k] * other.values[k][j];
+      }
+      result.values[i][j] = sum;
+    }
+  }
+
+  return result;
+}
+
+Tuple Matrix::operator*(const Tuple &other) const
+{
+  // Check if multiplycation can be done
+  if (this->w_ != 4) {
+    throw std::invalid_argument("Matrix dimensions are not compatible for multiplication.");
+  }
+
+  float tupleValues[4] = {other.x(), other.y(), other.z(), other.w()};
+  float resultValues[4] = {0, 0, 0, 0};
+
+  for(int i = 0; i < this->h_; i++) {
+    for(int j = 0; j < this->w_; j++) {
+      resultValues[i] += this->values[i][j] * tupleValues[j];
+    }
+  }
+
+  return Tuple(resultValues[0], resultValues[1], resultValues[2], resultValues[3]);
+}
+
 void Matrix::toConsole()
 {
   for (int i = 0; i < h_; i++) {

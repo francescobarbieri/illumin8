@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <vector>
+#include "tuple.h"
 
 class Matrix {
   public:
@@ -9,6 +10,8 @@ class Matrix {
 
     float operator() (int row, int col) const;
     bool operator== (const Matrix& other) const;
+    Matrix operator* (const Matrix& other) const;
+    Tuple operator* (const Tuple& other) const;
 
     void toConsole();
 
