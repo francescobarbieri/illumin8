@@ -89,3 +89,45 @@ TEST_CASE("Rotating a point around the z axis", "[transformation]") {
   REQUIRE( half_quarter * p == Point(-sqrt(2)/2, sqrt(2)/2, 0) );
   REQUIRE( full_quarter * p == Point(-1, 0, 0) );
 }
+
+TEST_CASE("A shearing transformation moves x in proportion to y", "[transformation]") {
+  Matrix s = Shearing(1, 0, 0, 0, 0, 0);
+  Tuple p = Point(2, 3, 4);
+  
+  REQUIRE( s * p == Point(5, 3, 4) );
+}
+
+TEST_CASE("A shearing transformation moves x in proportion to z", "[transformation]") {
+  Matrix s = Shearing(0, 1, 0, 0, 0, 0);
+  Tuple p = Point(2, 3, 4);
+  
+  REQUIRE( s * p == Point(6, 3, 4) );
+}
+
+TEST_CASE("A shearing transformation moves y in proportion to x", "[transformation]") {
+  Matrix s = Shearing(0, 0, 1, 0, 0, 0);
+  Tuple p = Point(2, 3, 4);
+  
+  REQUIRE( s * p == Point(2, 5, 4) );
+}
+
+TEST_CASE("A shearing transformation moves y in proportion to z", "[transformation]") {
+  Matrix s = Shearing(0, 0, 0, 1, 0, 0);
+  Tuple p = Point(2, 3, 4);
+  
+  REQUIRE( s * p == Point(2, 7, 4) );
+}
+
+TEST_CASE("A shearing transformation moves z in proportion to x", "[transformation]") {
+  Matrix s = Shearing(0, 0, 0, 0, 1, 0);
+  Tuple p = Point(2, 3, 4);
+  
+  REQUIRE( s * p == Point(2, 3, 6) );
+}
+
+TEST_CASE("A shearing transformation moves z in proportion to y", "[transformation]") {
+  Matrix s = Shearing(0, 0, 0, 0, 0, 1);
+  Tuple p = Point(2, 3, 4);
+  
+  REQUIRE( s * p == Point(2, 3, 7) );
+}

@@ -71,3 +71,17 @@ Matrix RotationZ(float radians)
 
   return rotation;
 }
+
+Matrix Shearing(float xy, float xz, float yx, float yz, float zx, float zy)
+{
+  Matrix shearing = IdentityMatrix(4);
+
+  shearing.Set(xy, 0, 1);
+  shearing.Set(xz, 0, 2);
+  shearing.Set(yx, 1, 0);
+  shearing.Set(yz, 1, 2);
+  shearing.Set(zx, 2, 0);
+  shearing.Set(zy, 2, 1);
+
+  return shearing;
+}
