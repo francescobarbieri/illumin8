@@ -131,3 +131,19 @@ TEST_CASE("A shearing transformation moves z in proportion to y", "[transformati
   
   REQUIRE( s * p == Point(2, 3, 7) );
 }
+
+TEST_CASE("Individual transformations are applied in sequence", "[transformation]") {
+  Tuple p = Point(1, 0, 1);
+  Matrix A = RotationX(M_PI/2);
+  Matrix B = Scaling(5, 5, 5);
+  Matrix C = Translation(10, 5, 7);
+  
+  Tuple p2 = A * p;
+  REQUIRE( p2 == Point(1, -1, 0) );
+
+  Tuple p3 = B * p2;
+  REQUIRE( p3 == Point(5, -5, 0) );
+
+  Tuple p4 = C * p3;
+  REQUIRE( p4 == Point(15, 0, 7) );
+}
