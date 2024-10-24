@@ -2,6 +2,7 @@
 #include "matrix.h"
 
 #include <vector>
+#include <math.h>
 
 Matrix Translation(float x, float y, float z)
 {
@@ -21,4 +22,52 @@ Matrix Scaling(float x, float y, float z)
   scaling.Set(1, 3, 3);
 
   return scaling;
+}
+
+Matrix RotationX(float radians)
+{
+  Matrix rotation = Matrix(4, 4, std::vector<float>(4 * 4, 0));
+  float cosR = cos(radians);
+  float sinR = sin(radians);
+
+  rotation.Set(1, 0, 0);
+  rotation.Set(cosR, 1, 1);
+  rotation.Set(cosR, 2, 2);
+  rotation.Set(-sinR, 1, 2);
+  rotation.Set(sinR, 2, 1);
+  rotation.Set(1, 3, 3);
+
+  return rotation;
+}
+
+Matrix RotationY(float radians)
+{
+  Matrix rotation = Matrix(4, 4, std::vector<float>(4 * 4, 0));
+  float cosR = cos(radians);
+  float sinR = sin(radians);
+
+  rotation.Set(cosR, 0, 0);
+  rotation.Set(1, 1, 1);
+  rotation.Set(cosR, 2, 2);
+  rotation.Set(-sinR, 2, 0);
+  rotation.Set(sinR, 0, 2);
+  rotation.Set(1, 3, 3);
+
+  return rotation;
+}
+
+Matrix RotationZ(float radians)
+{
+  Matrix rotation = Matrix(4, 4, std::vector<float>(4 * 4, 0));
+  float cosR = cos(radians);
+  float sinR = sin(radians);
+
+  rotation.Set(cosR, 0, 0);
+  rotation.Set(-sinR, 0, 1);
+  rotation.Set(sinR, 1, 0);
+  rotation.Set(cosR, 1, 1);
+  rotation.Set(1, 2, 2);
+  rotation.Set(1, 3, 3);
+
+  return rotation;
 }
