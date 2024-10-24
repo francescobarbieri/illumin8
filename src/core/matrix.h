@@ -9,12 +9,19 @@ class Matrix {
     Matrix(int w, int h, std::vector<float> values);
 
     Matrix Transpose() const;
+    float Determinant() const;
+    Matrix Submatrix(int row, int col) const;
+    float Minor(int row, int col) const;
+    float Cofactor(int row, int col) const;
+    Matrix Inverse() const;
 
     float operator() (int row, int col) const;
     bool operator== (const Matrix& other) const;
     Matrix operator* (const Matrix& other) const;
     Tuple operator* (const Tuple& other) const;
 
+    void Set(float value, const int &row, const int &col);
+    bool Invertible() const;
     void toConsole();
 
   private:
