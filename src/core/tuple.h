@@ -1,3 +1,6 @@
+#ifndef TUPLE_H
+#define TUPLE_H
+
 class Tuple {
     public:
         Tuple() {};
@@ -30,3 +33,5 @@ Tuple operator/(const Tuple tup, float alpha);
 
 Tuple Point(float x, float y, float z);
 Tuple Vector(float x, float y, float z);
+
+#endif
