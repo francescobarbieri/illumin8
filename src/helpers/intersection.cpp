@@ -1,14 +1,12 @@
 #include "intersection.h"
 
-intersection::Intersection(float t, float u, float v, const void *object)
+Intersection::Intersection(float t)
 {
   t_ = t;
-  u_ = u;
-  v_ = v;
-  object_ = object;
 }
 
-bool intersection::operator==(Intersection other) const
+Intersection::Intersection(float t, void *object)
 {
-  return object_ == other.object() && t_ == other.t();
+  t_ = t;
+  object_ = object;
 }
