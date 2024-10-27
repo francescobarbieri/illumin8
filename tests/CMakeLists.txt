@@ -8,6 +8,8 @@ add_executable(RunTests tests_main.cpp
     ../src/core/matrix.cpp
     core/test_transformation.cpp
     ../src/core/transformation.cpp
+    core/test_ray.cpp
+    ../src/core/ray.cpp
     display/test_canvas.cpp
     ../src/display/canvas.cpp
 )
