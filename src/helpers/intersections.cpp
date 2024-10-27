@@ -7,15 +7,7 @@ Intersections::Intersections(std::vector<Intersection> intersections)
   intersections_ = intersections;
 }
 
-std::optional<Intersection> Intersections::Hit() const
+Intersection Intersections::operator[](int i)
 {
-  if(!intersections_.size()) {
-    return NULL;
-  }
-
-  
-}
-
-void Intersections::Merge(Intersections xs)
-{
+  return intersections_[i];
 }

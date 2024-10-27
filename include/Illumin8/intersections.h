@@ -1,8 +1,8 @@
 #ifndef INTERSECTIONS_H
 #define INTERSECTIONS_H
 
+#include "Illumin8/intersection.h"
 #include <vector>
-#include "helpers/intersection.h"
 
 class Intersections {
   private:
@@ -10,11 +10,9 @@ class Intersections {
   
   public:
     Intersections(std::vector<Intersection> intersections);
-    std::optional<Intersection> Hit() const;
     std::size_t Size() const { return intersections_.size(); };
-    void Merge(Intersections xs);
 
-    const std::vector<Intersection> &intersections() const { return intersections_; };
-}
+    Intersection operator[](int);
+};
 
 #endif

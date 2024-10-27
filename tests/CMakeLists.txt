@@ -20,6 +20,8 @@ add_executable(RunTests tests_main.cpp
     # Helpers
     helpers/test_intersection.cpp
     ../src/helpers/intersection.cpp
+    helpers/test_intersections.cpp
+    ../src/helpers/intersections.cpp
 )
 
 target_link_libraries(RunTests PRIVATE Catch2::Catch2WithMain)
