@@ -1,6 +1,9 @@
 #ifndef RAY_H
 #define RAY_H
 #include "tuple.h"
+#include "matrix.h"
+
+class Matrix;
 
 class Ray {
   public:
@@ -10,6 +13,7 @@ class Ray {
     Tuple direction() const { return direction_; };
 
     Tuple Position(float time);
+    Ray Transform(Matrix matrix);
 
   private:
     Tuple origin_, direction_;

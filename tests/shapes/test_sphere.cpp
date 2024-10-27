@@ -1,5 +1,6 @@
-#include "Illumin8/intersections.h"
 #include <catch2/catch_all.hpp>
+#include "Illumin8/transformation.h"
+#include "Illumin8/intersections.h"
 #include "Illumin8/sphere.h"
 #include "Illumin8/ray.h"
 
@@ -78,4 +79,38 @@ TEST_CASE("Intersect sets the object on the intersection", "[sphere]") {
   REQUIRE( xs.Size() == 2 );
   REQUIRE( xs[0].object() == &s );
   REQUIRE( xs[1].object() == &s );
+}
+
+TEST_CASE("A sphere's default transformation", "[sphere]") {
+  Sphere s = Sphere();
+
+  REQUIRE( s.Transform() == IdentityMatrix(4) );
+}
+
+TEST_CASE("Changing a sphere's transformation", "[sphere]") {
+  Sphere s = Sphere();
+  Matrix t = Translation(2, 3, 4);
+  s.SetTransform(t);
+
+  REQUIRE( s.Transform() == t );
+}
+
+TEST_CASE("Intersecting a scaled sphere with a ray", "[sphere]") {
+  Ray r = Ray(Point(0, 0, -5), Vector(0, 0, 1));
+  Sphere s = Sphere();
+  s.SetTransform(Scaling(2, 2, 2));
+  Intersections xs = s.Intersect(r);
+
+  REQUIRE( xs.Size() == 2 );
+  REQUIRE( xs[0].t() == Catch::Approx(3) );
+  REQUIRE( xs[1].t() == Catch::Approx(7) );
+}
+
+TEST_CASE("Intersecting a translated sphere with a ray", "[sphere]") {
+  Ray r = Ray(Point(0, 0, -5), Vector(0, 0, 1));
+  Sphere s = Sphere();
+  s.SetTransform(Translation(5, 0, 0));
+  Intersections xs = s.Intersect(r);
+
+  REQUIRE( xs.Size() == 0 );
 }

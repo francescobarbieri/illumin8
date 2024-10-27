@@ -10,3 +10,8 @@ Tuple Ray::Position(float time)
 {
   return origin_ + direction_ * time; 
 }
+
+Ray Ray::Transform(Matrix matrix)
+{
+  return Ray(matrix * origin_, matrix * direction_);
+}
