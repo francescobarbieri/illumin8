@@ -26,4 +26,15 @@ enable_testing()
 add_subdirectory(tests)
 
 # Add executable
-add_executable(Illumin8 src/main.cpp)
+add_executable(Illumin8 
+    src/main.cpp
+    src/core/transformation.cpp
+    src/core/tuple.cpp
+    src/core/matrix.cpp
+    src/core/ray.cpp
+    src/core/color.cpp
+    src/shapes/sphere.cpp
+    src/helpers/intersections.cpp
+    src/helpers/intersection.cpp
+    src/display/canvas.cpp
+)
