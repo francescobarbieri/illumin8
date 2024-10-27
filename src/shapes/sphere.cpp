@@ -1,4 +1,4 @@
-#include "Illumin8/intersection.h"
+#include "Illumin8/intersections.h"
 #include "sphere.h"
 #include "math.h"
 
@@ -8,7 +8,7 @@ Sphere::Sphere()
   radius_ = 1.0;
 }
 
-std::vector<Intersection> Sphere::Intersections(Ray ray)
+Intersections Sphere::Intersect(Ray ray)
 {
   std::vector<Intersection> intersections;
 
@@ -23,11 +23,11 @@ std::vector<Intersection> Sphere::Intersections(Ray ray)
 
   float sqrt_discriminant = sqrt(discriminant);
 
-  Intersection t1 = Intersection( (- b - sqrt_discriminant) / (2 * a));
-  Intersection t2 = Intersection( (- b + sqrt_discriminant) / (2 * a));
+  Intersection t1 = Intersection( (- b - sqrt_discriminant) / (2 * a), this);
+  Intersection t2 = Intersection( (- b + sqrt_discriminant) / (2 * a), this);
 
   intersections.push_back(t1);
   intersections.push_back(t2);
 
-  return intersections;
+  return Intersections(intersections);
 }
