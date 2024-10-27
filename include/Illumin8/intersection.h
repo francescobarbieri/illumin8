@@ -10,6 +10,7 @@ class Intersection
   public:
     Intersection(float t);
     Intersection(float t, void *object);
+    bool operator==(Intersection other) const {return object_ == other.object() && t_ == other.t(); };
     
     float t() const { return t_; }; 
     void *object() const { return object_; }; 
