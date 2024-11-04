@@ -17,6 +17,8 @@ class Tuple {
         float dot(Tuple tup) const;
         Tuple cross(Tuple tup) const;
 
+        Tuple Reflect(Tuple n);
+
         bool isPoint() const;
         bool isVector() const;
 

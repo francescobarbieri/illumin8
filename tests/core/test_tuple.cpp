@@ -142,3 +142,19 @@ TEST_CASE("The cross product of two vectors", "[.tuple]") {
     REQUIRE( a.cross(b) == Vector(-1, 2, -1) );
     REQUIRE( b.cross(a) == Vector(1, -2, 1) );
 }
+
+TEST_CASE("Reflecting a vector approaching at 45°", "[tuple]") {
+    Tuple v = Vector(1, -1, 0);
+    Tuple n = Vector(0, 1, 0);
+    Tuple r = v.Reflect(n);
+
+    REQUIRE( r == Vector(1, 1, 0) );
+}
+
+TEST_CASE("Reflecting a vector off a slanted surface", "[tuple]") {
+    Tuple v = Vector(0, -1, 0);
+    Tuple n = Vector(sqrt(2)/2, sqrt(2)/2, 0);
+    Tuple r = v.Reflect(n);
+
+    REQUIRE( r == Vector(1, 0, 0) );
+}
