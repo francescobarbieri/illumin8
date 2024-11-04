@@ -32,3 +32,12 @@ Intersections Sphere::Intersect(Ray original_ray)
 
   return Intersections(intersections);
 }
+
+Tuple Sphere::Normal(Tuple world_point)
+{
+  Tuple object_point = transfrom_.Inverse() * world_point;
+  Tuple object_normal = object_point - Point(0, 0, 0);
+  Tuple world_normal = transfrom_.Inverse().Transpose() * object_normal;
+  world_normal.setW(0);
+  return (world_normal).normalize();
+}

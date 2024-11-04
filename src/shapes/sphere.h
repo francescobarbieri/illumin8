@@ -19,6 +19,7 @@ class Sphere  {
     Intersections Intersect(Ray r);
     void SetTransform(Matrix m) { transfrom_ = m; };
     Matrix Transform() const { return transfrom_; };
+    Tuple Normal(Tuple world_point);
 };
 
 #endif

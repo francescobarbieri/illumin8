@@ -114,3 +114,55 @@ TEST_CASE("Intersecting a translated sphere with a ray", "[sphere]") {
 
   REQUIRE( xs.Size() == 0 );
 }
+
+TEST_CASE("The normal on a sphere at a point on the x axis", "[sphere]") {
+  Sphere s = Sphere();
+  Tuple n = s.Normal(Point(1, 0, 0));
+
+  REQUIRE( n == Vector(1, 0, 0) );
+}
+
+TEST_CASE("The normal on a sphere at a point on the y axis", "[sphere]") {
+  Sphere s = Sphere();
+  Tuple n = s.Normal(Point(0, 1, 0));
+
+  REQUIRE( n == Vector(0, 1, 0) );
+}
+
+TEST_CASE("The normal on a sphere at a point on the z axis", "[sphere]") {
+  Sphere s = Sphere();
+  Tuple n = s.Normal(Point(0, 0, 1));
+
+  REQUIRE( n == Vector(0, 0, 1) );
+}
+
+TEST_CASE("The normal on a sphere at a nonaxial point", "[sphere]") {
+  Sphere s = Sphere();
+  Tuple n = s.Normal(Point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3));
+
+  REQUIRE( n == Vector(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3) );
+}
+ 
+TEST_CASE("The normal is a normalized vector", "[sphere]") {
+  Sphere s = Sphere();
+  Tuple n = s.Normal(Point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3));
+
+  REQUIRE( n == n.normalize() );
+}
+
+TEST_CASE("Computing the normal on a translated sphere", "[sphere]") {
+  Sphere s = Sphere();
+  s.SetTransform(Translation(0, 1, 0));
+  Tuple n = s.Normal(Point(0, 1.70711, -0.70711) );
+
+  REQUIRE( n == Vector(0, 0.70711, -0.70711) );
+}
+
+TEST_CASE("Computing the normal on a transformed sphere", "[sphere]") {
+  Sphere s = Sphere();
+  Matrix m = Scaling(1, 0.5, 1) * RotationZ(M_PI/5);
+  s.SetTransform(m);
+  Tuple n = s.Normal(Point(0, sqrt(2)/2, -sqrt(2)/2) );
+
+  REQUIRE( n == Vector(0, 0.97014, -0.24254) );
+}
